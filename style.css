@@ -1,0 +1,125 @@
+:root {
+  --bounce: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.root {
+  display: flex;
+  align-items: end;
+}
+
+.button {
+  height: 100%;
+  background-color: #252735;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: white;
+  font-size: 1.35rem;
+  letter-spacing: .075em;
+  font-weight: 500;
+  border-radius: .25rem;
+  transition: 300ms;
+  box-shadow: 0 8px 16px -5px rgba(0,0,0, .75);
+}
+
+.button:hover {
+  transform-origin: bottom;
+  transform: rotate3d(1, 0, 0, 20deg);
+}
+
+.button.progress {
+  position: relative;
+  background-color: #B3BACA;
+  height: 100%;
+  font-size: 0px;
+  padding: .25rem 5rem;
+  border-radius: 1rem;
+  transition: 300ms;
+  transform-origin: bottom;
+  box-shadow: none;
+  animation: reduceHeight .5s var(--bounce) forwards;
+}
+
+.button.progress::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: -.25rem -5rem;
+  border-radius: 1rem;
+  background-color: #3653f9;
+  transform-origin: left;
+  transform: scaleX(0%);
+  animation: load 2.5s ease-in-out .5s forwards;
+}
+
+.button.progress.done {
+  position: relative;
+  background-color: transparent;
+}
+
+.button.progress.done::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: -.25rem -5rem;
+  border-radius: 1rem;
+  
+  background-color: #252735;
+  transform-origin: center;
+  animation: snapUnderline .5s var(--bounce) forwards;
+}
+
+.button.progress.done::after {
+  content: "Open file!";
+  position: absolute;
+  font-size: 1.35rem;
+  font-weight: 500;
+  display: flex;
+  margin-top: -2.5rem;
+  margin-left: -3.15rem;
+  justify-content: center;
+  color: #252735;
+}
+
+@keyframes reduceHeight {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 2%;
+    }
+}
+
+@keyframes load {
+    from {
+        transform: scaleX(0%);
+    }
+    to {
+        transform: scaleX(100%);
+    }
+}
+
+@keyframes snapUnderline {
+  from {
+    transform: scaleX(100%);
+    margin-top: -.25rem;
+    height: 100%;
+  }
+  to {
+    transform: scaleX(80%);
+    margin-top: -.5rem;
+    height: 40%;
+  }
+}
+
